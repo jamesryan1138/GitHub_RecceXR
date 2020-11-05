@@ -9,6 +9,8 @@ public class SnapMapToTargetTransform : MonoBehaviour
 	private AbstractMap _map;
 	[SerializeField]
 	private Transform _target;
+	// Added
+
 
 	private void Awake()
 	{
@@ -18,7 +20,7 @@ public class SnapMapToTargetTransform : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void Update()
 	{
 		_map.OnUpdated += SnapMapToTarget;
 	}

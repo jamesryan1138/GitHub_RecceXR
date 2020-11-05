@@ -29,7 +29,7 @@ namespace UnityARInterface
 				_cachedARPlane = arPlane;
 			}
 
-			returnARPlane(_cachedARPlane);
+			returnARPlane?.Invoke(_cachedARPlane);
 		}
 	}
 }

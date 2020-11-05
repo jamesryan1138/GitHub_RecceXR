@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 440dc09e5517343b3a2a4e5c49a5eb3e
+  - enabled: 1
+    path: Assets/Scenes/UserInfo.unity
+    guid: 85eaa7dc6901a457cacdd431a18847a8
+  - enabled: 1
     path: Assets/Scenes/TabletopAR.unity
     guid: a455922b0e2954431922c9fb6c5377e4
   m_configObjects:

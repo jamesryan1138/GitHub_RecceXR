@@ -10,8 +10,9 @@ public class UpdateShaderCoordinatesByARPlane : MonoBehaviour
 
 	void Start()
 	{
-		ARPlaneHandler.returnARPlane += CheckCoordinates;
-		ARPlaneHandler.resetARPlane += ResetShaderValues;
+		//ARPlaneHandler.returnARPlane += CheckCoordinates;
+		//ARPlaneHandler.resetARPlane += ResetShaderValues;
+		UpdateShaderValues(transform.position, new Vector3(1000, 1000, 1000), Quaternion.identity);
 	}
 
 	void CheckCoordinates(BoundedPlane plane)
@@ -22,6 +23,7 @@ public class UpdateShaderCoordinatesByARPlane : MonoBehaviour
 
 		UpdateShaderValues(_position, _localScale, _rotation);
 	}
+
 
 	void UpdateShaderValues(Vector3 position, Vector3 localScale, Quaternion rotation)
 	{
@@ -43,6 +45,7 @@ public class UpdateShaderCoordinatesByARPlane : MonoBehaviour
 			localScale.z,
 			0f));
 	}
+
 
 	private void ResetShaderValues()
 	{

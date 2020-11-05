@@ -17,6 +17,7 @@ namespace Mapbox.Unity.Map
 	using Mapbox.Unity.MeshGeneration.Data;
 	using System.Globalization;
 
+
 	/// <summary>
 	/// Abstract map.
 	/// This is the main monobehavior which controls the map. It controls the visualization of map data.
@@ -50,11 +51,12 @@ namespace Mapbox.Unity.Map
 		protected Vector3 _cachedPosition;
 		protected Quaternion _cachedRotation;
 		protected Vector3 _cachedScale = Vector3.one;
-		#endregion
+        private object input;
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		public bool IsEditorPreviewEnabled
+        public bool IsEditorPreviewEnabled
 		{
 			get
 			{
@@ -309,6 +311,7 @@ namespace Mapbox.Unity.Map
 		/// <returns>The initialize.</returns>
 		/// <param name="latLon">Lat lon.</param>
 		/// <param name="zoom">Zoom.</param>
+        /// 
 		public virtual void Initialize(Vector2d latLon, int zoom)
 		{
 			_initializeOnStart = false;
@@ -316,6 +319,14 @@ namespace Mapbox.Unity.Map
 			{
 				_options = new MapOptions();
 			}
+
+
+			/* Center Map on Player
+			 * 
+			_options.locationOptions.latitudeLongitude = String.Format(CultureInfo.InvariantCulture, "{0},{1}", latLon.x, latLon.y);
+			 * 
+			 */
+
 			_options.locationOptions.latitudeLongitude = String.Format(CultureInfo.InvariantCulture, "{0},{1}", latLon.x, latLon.y);
 			_options.locationOptions.zoom = zoom;
 
