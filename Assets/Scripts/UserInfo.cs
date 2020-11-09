@@ -9,9 +9,10 @@ public class UserInfo : MonoBehaviour
 {
     public List<InputField> Input = new List<InputField>();
     public string NameInput;
-    public string FreqInput;
-    public string CallSignInput;
     public string GroupIDInput;
+    public string MapSelectInput;
+    public string BeaconSelectInput;
+    
 
     // public string MapIDInput;
 
@@ -22,20 +23,22 @@ public class UserInfo : MonoBehaviour
         NameInput = Name;
     }
 
-    public void GetFrequency(string Frequency)
-    {
-        FreqInput = Frequency;
-    }
-
-    public void GetCS(string CallSign)
-    {
-        CallSignInput = CallSign;
-    }
-
     public void GetGroup(string GroupID)
     {
         GroupIDInput = GroupID;
     }
+
+    public void GetMap(string MapSelect)
+    {
+        MapSelectInput = MapSelect;
+    }
+
+    public void GetBeacon(string BeaconSelect)
+    {
+        BeaconSelectInput = BeaconSelect;
+    }
+
+
 
     //public void GetMapID(string MapID)
     //{
@@ -51,7 +54,7 @@ public class UserInfo : MonoBehaviour
             Info.text = "";
         }
 
-        Debug.Log("Name" + NameInput + "GroupInputID" + GroupIDInput);
+        Debug.Log("Name" + NameInput + "GroupID" + GroupIDInput);
 
         DontDestroyOnLoad(this.gameObject);
 
@@ -60,7 +63,7 @@ public class UserInfo : MonoBehaviour
     private void Update()
     {
         ActiveScene = SceneManager.GetActiveScene();
-        if (ActiveScene.name == "ARPlacement")
+        if (ActiveScene.name == "TabletopAR")
         {
         
         }

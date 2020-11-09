@@ -10,6 +10,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public static PhotonLobby lobby;
     public UserInfo userInfo;
 
+    public GameObject SaveButton;
     public GameObject JoinMapButton;
     public GameObject CancelButton;
 
@@ -35,17 +36,17 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         //Debug.Log("Player has connected to master server");
-        JoinMapButton.SetActive(true); // Player is now connected to servers, JoinMapButton to start shit up!
+        SaveButton.SetActive(true); // Player is now connected to servers, JoinMapButton to start shit up!
         Debug.Log("Player has connected to master server");
         ConnectedText.SetActive(true);
         DisconnectedText.SetActive(false);
        
     }
 
-    public void OnJoinMapButtonClicked()
+    public void OnSaveButtonClicked()
     {
-        Debug.Log("JoinMap Button was clicked");
-        JoinMapButton.SetActive(false);
+        Debug.Log("Save Button was clicked");
+        SaveButton.SetActive(false);
         CancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom(); //Trying to join a random map.
     }
@@ -56,9 +57,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         CreateRoom();
     }
 
-    void CreateRoom() //Trying to create a room that does not already exist.
+    public void CreateRoom() //Trying to create a room that does not already exist.
     {
-        RoomName = userInfo.GroupIDInput; // Tried to pull from UserInfo C#
+        // RoomName = UserInfo.; // Tried to pull from UserInfo 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
         PhotonNetwork.CreateRoom(RoomName, roomOps); // Trying to create a room with specified values.
     }
@@ -66,6 +67,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Holy fuck I'm in a room!" + RoomName);
+        JoinMapButton.SetActive(true);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -79,14 +81,14 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("Cancel Button was clicked");
         PhotonNetwork.LeaveRoom();
         CancelButton.SetActive(false);
-        JoinMapButton.SetActive(true);
+        
         ConnectedText.SetActive(false);
         DisconnectedText.SetActive(true);
     }
 
     public void LoadScene()
     {
-        PhotonNetwork.LoadLevel("ARPlacement");
+        PhotonNetwork.LoadLevel("TabletopAR");
     }
 
 

@@ -191,8 +191,8 @@ MonoBehaviour:
   _mapTransform: {fileID: 886204381}
   _map: {fileID: 114378539891195148}
   vector: {x: 0, y: 0}
-  _mapManager: {fileID: 114378539891195148}
-  Player: {fileID: 1432631089}
+  _mapManager: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &188734218
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,59 +955,6 @@ PrefabInstance:
       objectReference: {fileID: 1147058833}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18593aeac18474b49bebac9e072ef2ab, type: 3}
---- !u!1 &1432631089 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1111785780636424, guid: 18593aeac18474b49bebac9e072ef2ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 1330720873}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1618826176
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1618826178}
-  - component: {fileID: 1618826177}
-  m_Layer: 0
-  m_Name: TileProvider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1618826177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618826176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15eed3c0528a3498dae4ff8f7b8ae77f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rangeTileProviderOptions:
-    targetTransform: {fileID: 0}
-    visibleBuffer: 0
-    disposeBuffer: 0
---- !u!4 &1618826178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618826176}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4735951656975853103}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1647299302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1147,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _tileProvider
       value: 
-      objectReference: {fileID: 1618826177}
+      objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _options.locationOptions.latitudeLongitude
@@ -1214,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _terrain._layerProperty.elevationLayerType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1234,12 +1181,12 @@ PrefabInstance:
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _imagery._layerProperty.sourceType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _imagery._layerProperty.sourceOptions.layerSource.Id
-      value: mapbox.satellite
+      value: mapbox://styles/mapbox/streets-v10
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1439,7 +1386,7 @@ PrefabInstance:
     - target: {fileID: 4737542014412398524, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4737606672647630010, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1462,7 +1409,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4735951656975853101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106a5ebea20cc4d5ba78304a86ff60d6, type: 3}
   m_Name: 
@@ -1470,12 +1417,6 @@ MonoBehaviour:
   _map: {fileID: 114378539891195148}
   _button: {fileID: 1327364189}
   _mapTransform: {fileID: 886204381}
---- !u!4 &4735951656975853103 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4731550121034450770, guid: 225490b4492654092b51af83b29c14b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4735951656975853100}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8322145057831892597
 PrefabInstance:
   m_ObjectHideFlags: 0
