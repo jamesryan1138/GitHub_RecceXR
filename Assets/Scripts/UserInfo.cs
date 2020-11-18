@@ -39,13 +39,6 @@ public class UserInfo : MonoBehaviour
     }
 
 
-
-    //public void GetMapID(string MapID)
-    //{
-    //     MapIDInput = MapID;
-    //}
-
-
     public void SubmitInfo()
     {
         foreach (InputField Info in Input)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PhotonLobby : MonoBehaviourPunCallbacks
@@ -26,11 +27,27 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+    //Enables Scene Loads
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        PhotonNetwork.AddCallbackTarget(this);
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        PhotonNetwork.RemoveCallbackTarget(this);
+        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings(); // Connects to master Photon server.
+        DontDestroyOnLoad(gameObject);
     }
 
     public override void OnConnectedToMaster()
@@ -59,7 +76,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public void CreateRoom() //Trying to create a room that does not already exist.
     {
-        // RoomName = UserInfo.; // Tried to pull from UserInfo 
+        // RoomName = UserInfo; // Tried to pull from UserInfo 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
         PhotonNetwork.CreateRoom(RoomName, roomOps); // Trying to create a room with specified values.
     }
@@ -88,13 +105,29 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public void LoadScene()
     {
+        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
         PhotonNetwork.LoadLevel("TabletopAR");
     }
 
 
-    // Update is called once per frame
-    void Update()
+
+
+    private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log(scene.name);
+        //called when multiplayer scene is loaded
         
+        if (scene.name == "TabletopAR")
+        {
+            CreatePlayer();
+            Debug.Log("Create a Player playa!");
+        }
     }
+
+    private void CreatePlayer()
+    {
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
+    }
+
 }
