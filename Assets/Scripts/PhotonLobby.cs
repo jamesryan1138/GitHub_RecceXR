@@ -12,7 +12,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public UserInfo userInfo;
 
     public GameObject SaveButton;
-    public GameObject JoinMapButton;
+    //public GameObject JoinMapButton;
     public GameObject CancelButton;
 
     public GameObject ConnectedText;
@@ -43,6 +43,15 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     }
 
 
+    
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("Player Entered Room");
+    }
+    
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +66,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("Player has connected to master server");
         ConnectedText.SetActive(true);
         DisconnectedText.SetActive(false);
+        PhotonNetwork.AutomaticallySyncScene = true;
        
     }
 
@@ -76,40 +86,84 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 
     public void CreateRoom() //Trying to create a room that does not already exist.
     {
-        // RoomName = UserInfo; // Tried to pull from UserInfo 
+        RoomName = userInfo.GroupIDInput; // Tried to pull from UserInfo 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
         PhotonNetwork.CreateRoom(RoomName, roomOps); // Trying to create a room with specified values.
     }
-
+// NEW CODE ADDED FOR SCENE SYNC BETWEEN CLIENTS
+//
+/// 
+/// /////////////////////
+/// 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Holy fuck I'm in a room!" + RoomName);
-        JoinMapButton.SetActive(true);
+        Debug.Log( RoomName );
+        //JoinMapButton.SetActive(true);
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        Debug.Log("Master Client Check");
+        PhotonNetwork.AutomaticallySyncScene = true;
+        Debug.Log("Sync Scene Check");
+        PhotonNetwork.LoadLevel("TabletopAR");
     }
 
+
+    
+//
+//
+/// /////////////////////
+    
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("Tried to create a room but failed, there must already be a room with the same name");
         CreateRoom(); //Retrying to create a new room with different name.
     }
+/*
+public void OnCancelButtonClicked()
+{
+    Debug.Log("Cancel Button was clicked");
+    PhotonNetwork.LeaveRoom();
+    CancelButton.SetActive(false);
+    
+    ConnectedText.SetActive(false);
+    DisconnectedText.SetActive(true);
+}
 
-    public void OnCancelButtonClicked()
+
+ * public void LoadScene()
+ 
+{
+    //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+    PhotonNetwork.LoadLevel("TabletopAR");
+}
+*/
+// PASTED IN FROM PHOTON PROJECT
+/*
+    public override void OnJoinedRoom()
     {
-        Debug.Log("Cancel Button was clicked");
-        PhotonNetwork.LeaveRoom();
-        CancelButton.SetActive(false);
-        
-        ConnectedText.SetActive(false);
-        DisconnectedText.SetActive(true);
+        base.OnJoinedRoom();
+        //photonPlayers = PhotonNetwork.PlayerList;
+        //playersInRoom = photonPlayers.Length;
+        //myNumberInRoom = playersinRoom;
+
+        Debug.Log("We are in a room");
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        StartGame();
+
     }
 
-    public void LoadScene()
+    void StartGame()
     {
-        //PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
-        PhotonNetwork.LoadLevel("TabletopAR");
+        //loads multiplayer scene for all players
+        //isGameLoaded = true;
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+        PhotonNetwork.LoadLevel(1);
     }
-
-
+    */
+    //
+    
 
 
     private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
@@ -121,6 +175,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         {
             CreatePlayer();
             Debug.Log("Create a Player playa!");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            Debug.Log("SYNC SCENE AGAIN??");
         }
     }
 

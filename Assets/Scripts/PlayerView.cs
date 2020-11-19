@@ -39,86 +39,30 @@ public class PlayerView : MonoBehaviourPun //, IPunObservable
     void LateUpdate()
     {
 
-        if (!this.photonView.IsMine && _isInitialized)
+        if (this.photonView.IsMine && _isInitialized)
         {
             LatitudeLongitude = LocationProvider.CurrentLocation.LatitudeLongitude;
         }
+        var map = LocationProviderFactory.Instance.mapManager;
+        transform.localPosition = map.GeoToWorldPosition(LatitudeLongitude);
     }
 
+/// <summary>
+/// 
 
-    /*
+   
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            if (this.m_SynchronizePosition)
-            {
-                this.m_Direction = transform.localPosition - this.m_StoredPosition;
-                this.m_StoredPosition = transform.localPosition;
-
-                stream.SendNext(transform.localPosition);
-                stream.SendNext(this.m_Direction);
-            }
-
-            if (this.m_SynchronizeRotation)
-            {
-                stream.SendNext(transform.localRotation);
-            }
-
-            if (this.m_SynchronizeScale)
-            {
-                stream.SendNext(transform.localScale);
-            }
+            stream.SendNext(LatitudeLongitude);
         }
+        
         else
         {
+            this.LatitudeLongitude = (Vector2d)stream.ReceiveNext();
 
-
-            if (this.m_SynchronizePosition)
-            {
-                this.m_NetworkPosition = (Vector3)stream.ReceiveNext();
-                this.m_Direction = (Vector3)stream.ReceiveNext();
-
-                if (m_firstTake)
-                {
-                    transform.localPosition = this.m_NetworkPosition;
-                    this.m_Distance = 0f;
-                }
-                else
-                {
-                    float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
-                    this.m_NetworkPosition += this.m_Direction * lag;
-                    this.m_Distance = Vector3.Distance(transform.localPosition, this.m_NetworkPosition);
-                }
-
-
-            }
-
-            if (this.m_SynchronizeRotation)
-            {
-                this.m_NetworkRotation = (Quaternion)stream.ReceiveNext();
-
-                if (m_firstTake)
-                {
-                    this.m_Angle = 0f;
-                    transform.localRotation = this.m_NetworkRotation;
-                }
-                else
-                {
-                    this.m_Angle = Quaternion.Angle(transform.localRotation, this.m_NetworkRotation);
-                }
-            }
-
-            if (this.m_SynchronizeScale)
-            {
-                transform.localScale = (Vector3)stream.ReceiveNext();
-            }
-
-            if (m_firstTake)
-            {
-                m_firstTake = false;
-            }
         }
     }
-    */
+  
 }
