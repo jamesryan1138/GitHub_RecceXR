@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class UserInfo : MonoBehaviour
 
 {
+    public InputField GroupIDInput;
     public List<InputField> Input = new List<InputField>();
     public string NameInput;
-    public string GroupIDInput;
+    
     public string MapSelectInput;
     public string BeaconSelectInput;
     
@@ -23,9 +24,9 @@ public class UserInfo : MonoBehaviour
         NameInput = Name;
     }
 
-    public void GetGroup(string GroupID)
+    public string GetGroupID()
     {
-        GroupIDInput = GroupID;
+        return GroupIDInput.text;
     }
 
     public void GetMap(string MapSelect)

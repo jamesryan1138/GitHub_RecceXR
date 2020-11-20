@@ -7,7 +7,7 @@ using Mapbox.Utils;
 using Mapbox.Unity.Location;
 
 
-public class PlayerView : MonoBehaviourPun //, IPunObservable
+public class PlayerView : MonoBehaviourPun, IPunObservable
 {
     public Vector2d LatitudeLongitude;
     public string UserID;
@@ -55,14 +55,19 @@ public class PlayerView : MonoBehaviourPun //, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(LatitudeLongitude);
+
+            stream.SendNext(LatitudeLongitude.x);
+            stream.SendNext(LatitudeLongitude.y);
         }
         
         else
         {
-            this.LatitudeLongitude = (Vector2d)stream.ReceiveNext();
+            double x = (double)stream.ReceiveNext();
+            double y = (double)stream.ReceiveNext();
+            this.LatitudeLongitude = new Vector2d(x,y);
 
         }
+        Debug.Log("Serialized View Called");
     }
   
 }

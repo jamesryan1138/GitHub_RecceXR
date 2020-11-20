@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Pun.Demo.Cockpit;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -75,10 +76,21 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("Save Button was clicked");
         SaveButton.SetActive(false);
         CancelButton.SetActive(true);
-        PhotonNetwork.JoinRandomRoom(); //Trying to join a random map.
+
+        RoomName = userInfo.GetGroupID();
+        RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
+        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOps, TypedLobby.Default);
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message) //When JoinRandomRoom fails this is called.
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+        Debug.Log("Room create failed");
+    }
+
+    /*
+     * public override void OnJoinRandomFailed(short returnCode, string message) //When JoinRandomRoom fails this is called.
+     
     {
         Debug.Log("Tried to join a random room but failed. You have no friends");
         CreateRoom();
@@ -90,6 +102,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
         PhotonNetwork.CreateRoom(RoomName, roomOps); // Trying to create a room with specified values.
     }
+    
+    */
 // NEW CODE ADDED FOR SCENE SYNC BETWEEN CLIENTS
 //
 /// 
@@ -97,7 +111,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
 /// 
     public override void OnJoinedRoom()
     {
-        Debug.Log( RoomName );
+        Debug.Log(PhotonNetwork.CurrentRoom);
         //JoinMapButton.SetActive(true);
         if (!PhotonNetwork.IsMasterClient)
             return;
@@ -116,7 +130,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("Tried to create a room but failed, there must already be a room with the same name");
-        CreateRoom(); //Retrying to create a new room with different name.
+        //CreateRoom(); //Retrying to create a new room with different name.
     }
 /*
 public void OnCancelButtonClicked()
