@@ -43,8 +43,6 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
         {
             LatitudeLongitude = LocationProvider.CurrentLocation.LatitudeLongitude;
         }
-        var map = LocationProviderFactory.Instance.mapManager;
-        transform.localPosition = map.GeoToWorldPosition(LatitudeLongitude);
     }
 
 /// <summary>
@@ -65,9 +63,10 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
             double x = (double)stream.ReceiveNext();
             double y = (double)stream.ReceiveNext();
             this.LatitudeLongitude = new Vector2d(x,y);
+            Debug.LogWarning("Serialized View Called");
 
         }
-        Debug.Log("Serialized View Called");
+        
     }
   
 }

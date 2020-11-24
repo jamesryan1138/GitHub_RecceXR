@@ -15,6 +15,7 @@ public class MapZoomAR : MonoBehaviour
     public void DecreaseZoom()
     {
         SetZoom(_mapManager.Zoom - 1);
+        Debug.Log("My Message");
     }
 
     public void SetZoom(float NewZoom)

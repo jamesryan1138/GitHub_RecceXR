@@ -13,12 +13,14 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public UserInfo userInfo;
 
     public GameObject SaveButton;
+    public GameObject StayActiveButton;
     //public GameObject JoinMapButton;
-    public GameObject CancelButton;
+  
 
     public GameObject ConnectedText;
     public GameObject DisconnectedText;
     public string RoomName; // Pull GroupID to use as Room Name.
+    private string SceneName;
 
     private void Awake()
     {
@@ -49,10 +51,14 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Player Entered Room");
     }
-    
-    
-    
-    
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log("Player Left Room");
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +70,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         //Debug.Log("Player has connected to master server");
         SaveButton.SetActive(true); // Player is now connected to servers, JoinMapButton to start shit up!
+        StayActiveButton.SetActive(true);
         Debug.Log("Player has connected to master server");
         ConnectedText.SetActive(true);
         DisconnectedText.SetActive(false);
@@ -71,11 +78,22 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
        
     }
 
+    public void OnStayActiveClicked()
+    {
+        Debug.Log("Save Button was clicked");
+        StayActiveButton.SetActive(false);
+        
+        RoomName = userInfo.GetGroupID();
+        RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
+        PhotonNetwork.JoinOrCreateRoom(RoomName, roomOps, TypedLobby.Default);
+        
+    }
+    
     public void OnSaveButtonClicked()
     {
         Debug.Log("Save Button was clicked");
         SaveButton.SetActive(false);
-        CancelButton.SetActive(true);
+        
 
         RoomName = userInfo.GetGroupID();
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
@@ -185,7 +203,7 @@ public void OnCancelButtonClicked()
         Debug.Log(scene.name);
         //called when multiplayer scene is loaded
         
-        if (scene.name == "TabletopAR")
+        if (scene.name == "TabletopAR" && scene.name == "ActiveUserScene")
         {
             CreatePlayer();
             Debug.Log("Create a Player playa!");
@@ -196,7 +214,7 @@ public void OnCancelButtonClicked()
 
     private void CreatePlayer()
     {
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("PlayerView", Vector3.zero, Quaternion.identity);
         //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), transform.position, Quaternion.identity, 0);
     }
 

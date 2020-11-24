@@ -8,10 +8,10 @@ public class UserInfo : MonoBehaviour
 
 {
     public InputField GroupIDInput;
-    public List<InputField> Input = new List<InputField>();
-    public string NameInput;
+    public InputField NameInput;
     
-    public string MapSelectInput;
+    public List<InputField> Input = new List<InputField>();
+   public string MapSelectInput;
     public string BeaconSelectInput;
     
 
@@ -19,11 +19,13 @@ public class UserInfo : MonoBehaviour
 
     private Scene ActiveScene;
 
-    public void GetName(string Name)
+    /*
+     * public string GetName()
+   
     {
-        NameInput = Name;
+        return NameInput.text;
     }
-
+*/
     public string GetGroupID()
     {
         return GroupIDInput.text;

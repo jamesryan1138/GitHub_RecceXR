@@ -38,7 +38,7 @@ namespace UnityARInterface
                 extents = new Vector2(2.2f, 2f),
                 //extents = new Vector2(1f, 1f),
                 rotation = Quaternion.AngleAxis(60f, Vector3.up),
-                center = new Vector3(2f, -1f, 3f)
+                center = new Vector3(1.2f, -1.2f, 1.2f)
                 //center = new Vector3(1f, 1f, 1f)
             };
 

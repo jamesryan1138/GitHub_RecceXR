@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7276520212705734407
 Transform:
   m_ObjectHideFlags: 0
@@ -104,10 +104,9 @@ GameObject:
   - component: {fileID: 8602966642162674253}
   - component: {fileID: 8568865667450262003}
   - component: {fileID: 9084990037732849912}
-  - component: {fileID: 1009788273687101556}
-  - component: {fileID: 7619477228659326759}
+  - component: {fileID: 545001207757170728}
   m_Layer: 9
-  m_Name: Player
+  m_Name: PlayerBeacon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
---- !u!114 &1009788273687101556
+--- !u!114 &545001207757170728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,35 +168,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8606791716328686993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: b0601b7968ed48eda6421b8d7897add0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents: []
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &7619477228659326759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606791716328686993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3aad9f7c20f045d2b7b5a0c2549d28b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LatitudeLongitude:
-    x: 0
-    y: 0
-  UserID: 
+  playerView: {fileID: 0}
 --- !u!1 &8608621500890847351
 GameObject:
   m_ObjectHideFlags: 0
