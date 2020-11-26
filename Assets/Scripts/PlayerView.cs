@@ -13,7 +13,7 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
     public string UserID;
 
 
-    bool _isInitialized;
+    
 
     ILocationProvider _locationProvider;
     ILocationProvider LocationProvider
@@ -31,15 +31,12 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
 
     Vector3 _targetPosition;
 
-    void Start()
-    {
-        LocationProviderFactory.Instance.mapManager.OnInitialized += () => _isInitialized = true;
-    }
+
 
     void LateUpdate()
     {
 
-        if (this.photonView.IsMine && _isInitialized)
+        if (this.photonView.IsMine)
         {
             LatitudeLongitude = LocationProvider.CurrentLocation.LatitudeLongitude;
         }

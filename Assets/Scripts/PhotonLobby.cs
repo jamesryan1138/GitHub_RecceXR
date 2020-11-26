@@ -82,6 +82,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("Save Button was clicked");
         StayActiveButton.SetActive(false);
+        SaveButton.SetActive(false);
+        SceneName = "ActiveUserScene";
         
         RoomName = userInfo.GetGroupID();
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 10 };
@@ -92,6 +94,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public void OnSaveButtonClicked()
     {
         Debug.Log("Save Button was clicked");
+        SceneName = "TabletopAR";
+        
+        StayActiveButton.SetActive(false);
         SaveButton.SetActive(false);
         
 
@@ -131,12 +136,11 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log(PhotonNetwork.CurrentRoom);
         //JoinMapButton.SetActive(true);
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-        Debug.Log("Master Client Check");
-        PhotonNetwork.AutomaticallySyncScene = true;
-        Debug.Log("Sync Scene Check");
-        PhotonNetwork.LoadLevel("TabletopAR");
+        //if (!PhotonNetwork.IsMasterClient)
+        //Debug.Log("Master Client Check");
+        //PhotonNetwork.AutomaticallySyncScene = true;
+       // Debug.Log("Sync Scene Check");
+        PhotonNetwork.LoadLevel(SceneName);
     }
 
 
@@ -203,11 +207,11 @@ public void OnCancelButtonClicked()
         Debug.Log(scene.name);
         //called when multiplayer scene is loaded
         
-        if (scene.name == "TabletopAR" && scene.name == "ActiveUserScene")
+        if (scene.name == "TabletopAR" || scene.name == "ActiveUserScene")
         {
             CreatePlayer();
             Debug.Log("Create a Player playa!");
-            PhotonNetwork.AutomaticallySyncScene = true;
+            //PhotonNetwork.AutomaticallySyncScene = true;
             Debug.Log("SYNC SCENE AGAIN??");
         }
     }

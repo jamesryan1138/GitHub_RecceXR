@@ -19,13 +19,12 @@ public class UserInfo : MonoBehaviour
 
     private Scene ActiveScene;
 
-    /*
-     * public string GetName()
-   
+    
+    public string GetName()
     {
         return NameInput.text;
     }
-*/
+
     public string GetGroupID()
     {
         return GroupIDInput.text;
@@ -50,7 +49,7 @@ public class UserInfo : MonoBehaviour
             Info.text = "";
         }
 
-        Debug.Log("Name" + NameInput + "GroupID" + GroupIDInput);
+        Debug.Log("Name: " + NameInput.text + " // " + "GroupID: " + GroupIDInput.text);
 
         DontDestroyOnLoad(this.gameObject);
 

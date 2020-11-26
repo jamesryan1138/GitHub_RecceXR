@@ -7,12 +7,22 @@ namespace DefaultNamespace
     public class Beacon: MonoBehaviour
 
     {
+        bool _isInitialized;
+        
         [NonSerialized]
         public PlayerView playerView;
+        void Start()
+        {
+            LocationProviderFactory.Instance.mapManager.OnInitialized += () => _isInitialized = true;
+        }
         void LateUpdate()
         {
-            var map = LocationProviderFactory.Instance.mapManager;
-            transform.localPosition = map.GeoToWorldPosition(playerView.LatitudeLongitude);
+            if (_isInitialized)
+            {
+                var map = LocationProviderFactory.Instance.mapManager;
+                transform.localPosition = map.GeoToWorldPosition(playerView.LatitudeLongitude);
+            }
+
         }
     }
 }
