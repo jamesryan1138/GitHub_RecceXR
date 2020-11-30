@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
 
     public void GrabInfo()
     {
-       // m_name = userInfo.NameInput;
+        m_name = userInfo.GetName();
         m_group = userInfo.GetGroupID();
         
     }

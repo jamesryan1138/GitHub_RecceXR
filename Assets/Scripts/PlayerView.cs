@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -31,7 +33,15 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
 
     Vector3 _targetPosition;
 
+    public void Start()
+    {
+        BeaconSpawner.Instance.RegisterPlayerView(this);
+    }
 
+    public void OnDestroy()
+    {
+        BeaconSpawner.Instance.DeRegisterPlayerView(this);
+    }
 
     void LateUpdate()
     {

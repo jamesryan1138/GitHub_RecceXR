@@ -1,5 +1,6 @@
 using System;
 using Mapbox.Unity.Location;
+using Mapbox.Unity.Map;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -11,16 +12,18 @@ namespace DefaultNamespace
         
         [NonSerialized]
         public PlayerView playerView;
+
+        private AbstractMap _abstractMap;
         void Start()
         {
-            LocationProviderFactory.Instance.mapManager.OnInitialized += () => _isInitialized = true;
+            _abstractMap = FindObjectOfType<PlaceMapboxMap>()._map;
+                _abstractMap.OnInitialized += () => _isInitialized = true;
         }
         void LateUpdate()
         {
             if (_isInitialized)
             {
-                var map = LocationProviderFactory.Instance.mapManager;
-                transform.localPosition = map.GeoToWorldPosition(playerView.LatitudeLongitude);
+                transform.localPosition = _abstractMap.GeoToWorldPosition(playerView.LatitudeLongitude);
             }
 
         }

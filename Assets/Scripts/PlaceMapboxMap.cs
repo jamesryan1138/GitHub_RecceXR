@@ -16,9 +16,7 @@ public class PlaceMapboxMap : MonoBehaviour
     public float findingSquareDist = 0.5f;
     public Transform _mapTransform;
     public AbstractMap _map;
-    public Vector2 vector;
-    public AbstractMap _mapManager;
-    public GameObject Player;
+
 
 
     //public string CentreMeX;
