@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ActiveTransmit : MonoBehaviour
 {
-    public UserInfo userInfo;
+    public GameController gameController;
     public float latitude;
     public float longitude;
 
@@ -22,10 +22,10 @@ public class ActiveTransmit : MonoBehaviour
 
     public void Awake()
     {
-        //myUserName = userInfo.NameInput.GetComponent<Text>().ToString();
-        //myGroupID = userInfo.GroupIDInput.GetComponent<Text>().ToString();
-        //displayMyName.text = userInfo.NameInput.ToString();
-        //displayMyGroup.text = userInfo.GroupIDInput.ToString();
+        GameController gameControllers = GameObject.FindObjectOfType <GameController>();
+        //PlayerView[] playerViews = GameObject.FindObjectsOfType <PlayerView>();
+        displayMyName.text = gameControllers.userInfo.GetName();
+        displayMyGroup.text = gameControllers.userInfo.GetGroupID();
     }
     
     // Update is called once per frame

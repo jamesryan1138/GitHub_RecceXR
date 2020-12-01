@@ -27,7 +27,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         lobby = this; // creates the singleton, lives in main menu
         // #Critical
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     //Enables Scene Loads
@@ -74,7 +74,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("Player has connected to master server");
         ConnectedText.SetActive(true);
         DisconnectedText.SetActive(false);
-        PhotonNetwork.AutomaticallySyncScene = true;
+        // PhotonNetwork.AutomaticallySyncScene = true;
        
     }
 
@@ -212,7 +212,7 @@ public void OnCancelButtonClicked()
             CreatePlayer();
             Debug.Log("Create a Player playa!");
             //PhotonNetwork.AutomaticallySyncScene = true;
-            Debug.Log("SYNC SCENE AGAIN??");
+            //Debug.Log("SYNC SCENE AGAIN??");
         }
     }
 

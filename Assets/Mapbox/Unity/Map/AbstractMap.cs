@@ -56,6 +56,11 @@ namespace Mapbox.Unity.Map
 
         #region Properties
 
+        public bool isInitialized
+        {
+	        get;
+	        private set;
+        }
         public bool IsEditorPreviewEnabled
 		{
 			get
@@ -727,6 +732,7 @@ namespace Mapbox.Unity.Map
 		/// <param name="options">Options.</param>
 		protected virtual void InitializeMap(MapOptions options)
 		{
+			isInitialized = true;
 			Options = options;
 			_worldHeightFixed = false;
 			_fileSource = MapboxAccess.Instance;

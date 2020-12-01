@@ -17,7 +17,8 @@ namespace DefaultNamespace
         void Start()
         {
             _abstractMap = FindObjectOfType<PlaceMapboxMap>()._map;
-                _abstractMap.OnInitialized += () => _isInitialized = true;
+            _abstractMap.OnInitialized += () => _isInitialized = true;
+            _isInitialized = _abstractMap.isInitialized;
         }
         void LateUpdate()
         {
