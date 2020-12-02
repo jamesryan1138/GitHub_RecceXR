@@ -9,6 +9,9 @@ namespace DefaultNamespace
 {
     public class BeaconSpawner : MonoBehaviour
     {
+        
+        
+
         public Beacon BeaconPrefab;
 
         public Dictionary<PlayerView, Beacon> ViewToBeacon;
@@ -111,6 +114,7 @@ namespace DefaultNamespace
 
             return NewBeacon;
         }
+        
         
         public void Start()
         {

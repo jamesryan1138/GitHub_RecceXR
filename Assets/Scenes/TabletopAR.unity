@@ -190,9 +190,6 @@ MonoBehaviour:
   findingSquareDist: 0.5
   _mapTransform: {fileID: 886204381}
   _map: {fileID: 114378539891195148}
-  vector: {x: 0, y: 0}
-  _mapManager: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!1 &188734218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,12 +1096,12 @@ PrefabInstance:
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _imagery._layerProperty.sourceType
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _imagery._layerProperty.sourceOptions.layerSource.Id
-      value: mapbox://styles/mapbox/satellite-streets-v10
+      value: mapbox://styles/jamesryan1138/ckglqnyav0bis19pd9xpkbkyl
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1114,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _terrain._layerProperty.sideWallOptions.isActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1209,12 +1206,27 @@ PrefabInstance:
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _terrain._layerProperty.modificationOptions.sampleCount
-      value: 30
+      value: 113
       objectReference: {fileID: 0}
     - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
       propertyPath: _imagery._layerProperty.sourceOptions.layerSource.Name
       value: Satellite
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
+        type: 3}
+      propertyPath: _options.placementOptions.snapMapToZero
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
+        type: 3}
+      propertyPath: _imagery._layerProperty.rasterOptions.useRetina
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624950928474348320, guid: 225490b4492654092b51af83b29c14b1,
+        type: 3}
+      propertyPath: _terrain._layerProperty.sourceType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4731382682978453764, guid: 225490b4492654092b51af83b29c14b1,
         type: 3}
@@ -1332,7 +1344,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4735951656975853101}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106a5ebea20cc4d5ba78304a86ff60d6, type: 3}
   m_Name: 

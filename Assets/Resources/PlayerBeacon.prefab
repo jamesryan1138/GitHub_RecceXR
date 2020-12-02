@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 8568865667450262003}
   - component: {fileID: 9084990037732849912}
   - component: {fileID: 545001207757170728}
+  - component: {fileID: 1528430672588071190}
   m_Layer: 9
   m_Name: PlayerBeacon
   m_TagString: Untagged
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8606791716328686993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22805dac1b8933d49b89c409a8903cde, type: 3}
   m_Name: 
@@ -171,6 +172,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0601b7968ed48eda6421b8d7897add0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1528430672588071190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606791716328686993}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83fbcdde9d584fc7bbc6a9f207e4bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerUiPrefab: {fileID: 7996530798428475569, guid: 0b79bdb32f0c244a2b19c10617e07321,
+    type: 3}
 --- !u!1 &8608621500890847351
 GameObject:
   m_ObjectHideFlags: 0
