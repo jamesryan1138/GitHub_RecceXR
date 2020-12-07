@@ -27,5 +27,8 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneBuildIndex: 0, LoadSceneMode.Single);
     }
-
+    public void LaunchActiveUser()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 3, LoadSceneMode.Single);
+    }
 }

@@ -7,14 +7,23 @@ using UnityEngine.SceneManagement;
 public class UserInfo : MonoBehaviour
 
 {
+    
+    // Added from Photon to pick Select User Beacon
+   
+    // list of Character options
+    
+
+    public List<InputField> Input = new List<InputField>();
     public InputField GroupIDInput;
     public InputField NameInput;
     
-    public List<InputField> Input = new List<InputField>();
-   public string MapSelectInput;
-    public string BeaconSelectInput;
+    /*
+    public static UserInfo PI;
+    public int MySelectedCharacter;
     
-
+    public GameObject[] allCharacters;
+    */
+        
     // public string MapIDInput;
 
     private Scene ActiveScene;
@@ -29,18 +38,7 @@ public class UserInfo : MonoBehaviour
     {
         return GroupIDInput.text;
     }
-
-    public void GetMap(string MapSelect)
-    {
-        MapSelectInput = MapSelect;
-    }
-
-    public void GetBeacon(string BeaconSelect)
-    {
-        BeaconSelectInput = BeaconSelect;
-    }
-
-
+        
     public void SubmitInfo()
     {
         foreach (InputField Info in Input)
@@ -54,7 +52,23 @@ public class UserInfo : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
     }
+  
+    /* Start function from Photon Project
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("MyCharacter"))
+        {
+            MySelectedCharacter = PlayerPrefs.GetInt("MyCharacter");
+        }
+        else
+        {
+            MySelectedCharacter = 0;
+            PlayerPrefs.SetInt("MyCharacter", MySelectedCharacter);
 
+        }
+    }
+    */
+    
     private void Update()
     {
         ActiveScene = SceneManager.GetActiveScene();

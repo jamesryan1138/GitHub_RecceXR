@@ -33,6 +33,20 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
 
     Vector3 _targetPosition;
 
+    // Set My Own UserID
+    
+    public void Awake()
+    {
+        if (this.photonView.IsMine)
+        {
+            GameController gameControllers = GameObject.FindObjectOfType <GameController>();
+            UserID = gameControllers.userInfo.GetName();
+            
+            //TODO Call SetUp RPC with UserID ... Add debugs and hook up with Beacon.
+        }
+    }
+    
+    //
     public void Start()
     {
         BeaconSpawner.Instance.RegisterPlayerView(this);

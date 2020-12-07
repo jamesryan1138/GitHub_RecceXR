@@ -19,6 +19,10 @@ public class MapZoomAR : MonoBehaviour
         Debug.Log("Decrease Zoom");
     }
 
+    public virtual void UpdateMap(float zoom)
+    {
+        _mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
+    }
     public void SetZoom(float NewZoom)
     {
         var zoom = Mathf.Max(0.0f, Mathf.Min(NewZoom, 21));
