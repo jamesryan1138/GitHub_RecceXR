@@ -21,6 +21,7 @@ public class UpdateShaderCoordinatesByARPlane : MonoBehaviour
 		_rotation = Quaternion.Inverse(plane.rotation);
 		_localScale = new Vector3(plane.extents.x, 10, plane.extents.y);
 
+
 		UpdateShaderValues(_position, _localScale, _rotation);
 	}
 

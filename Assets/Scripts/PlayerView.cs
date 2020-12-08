@@ -13,6 +13,7 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
 {
     public Vector2d LatitudeLongitude;
     public string UserID;
+    public int BeaconAvatar;
 
 
     
@@ -46,10 +47,33 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
         }
     }
     
+    //Create RPC function [PunRPC] - Data type has to be serialized
+    [PunRPC]
+    void RPC_AddCharacter(int whichBeaconAvatar, string userID)
+    {
+        //Instantiates the non-local players selected character/beacon to local player client
+        BeaconAvatar = whichBeaconAvatar;
+        UserID = userID;
+        Debug.Log("Character PICKED!!");
+        
+    }
+    
     //
     public void Start()
     {
         BeaconSpawner.Instance.RegisterPlayerView(this);
+        
+        //Checks if PV is local client - if not, function does not run
+        if (photonView.IsMine)
+        {
+            //Calls RPC function by Name("RPC_AddCharacter"), sent to who across network ("AllBuffered"), values sent as parameters 
+            photonView.RPC("RPC_AddCharacter",
+                RpcTarget.AllBuffered, 
+                UserInfo.instance.MySelectedAvatar, 
+                UserInfo.instance.GetName());
+            Debug.Log("Character checker?");
+        }
+        
     }
 
     public void OnDestroy()

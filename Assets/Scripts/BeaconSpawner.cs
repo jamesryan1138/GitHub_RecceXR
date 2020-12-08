@@ -10,9 +10,7 @@ namespace DefaultNamespace
     public class BeaconSpawner : MonoBehaviour
     {
         
-        
-
-        public Beacon BeaconPrefab;
+        public List<Beacon> BeaconPrefabs;
 
         public Dictionary<PlayerView, Beacon> ViewToBeacon;
         public bool IsInMapScene;
@@ -109,8 +107,8 @@ namespace DefaultNamespace
 
         private Beacon InstantiateBeacon(PlayerView playerView)
         {
-            Beacon NewBeacon = Instantiate(BeaconPrefab);
-            NewBeacon.playerView = playerView;
+            Beacon NewBeacon = Instantiate(BeaconPrefabs[playerView.BeaconAvatar]);
+            NewBeacon.SetUp(playerView);
 
             return NewBeacon;
         }

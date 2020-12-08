@@ -1270,8 +1270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c812664ed7c445c842514b091c2a3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeaconPrefab: {fileID: 545001207757170728, guid: 53c12825581cb451cb39cabd5b67dade,
-    type: 3}
+  BeaconPrefabs:
+  - {fileID: 545001207757170728, guid: 53c12825581cb451cb39cabd5b67dade, type: 3}
+  - {fileID: 545001207757170728, guid: 8d458f8e4fc57477cb3fd65bdfc54cae, type: 3}
+  - {fileID: 545001207757170728, guid: 5cd3182ea87d649bc87308062c2c0ca3, type: 3}
+  IsInMapScene: 0
 --- !u!4 &1598099388
 Transform:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
@@ -13,6 +14,8 @@ namespace DefaultNamespace
         [NonSerialized]
         public PlayerView playerView;
 
+        public Text UserIDText;
+
         private AbstractMap _abstractMap;
         void Start()
         {
@@ -20,6 +23,13 @@ namespace DefaultNamespace
             _abstractMap.OnInitialized += () => _isInitialized = true;
             _isInitialized = _abstractMap.isInitialized;
         }
+
+        public void SetUp(PlayerView view)
+        {
+            playerView = view;
+            UserIDText.text = playerView.UserID;
+        }
+        
         void LateUpdate()
         {
             if (_isInitialized)

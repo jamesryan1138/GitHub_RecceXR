@@ -5,12 +5,15 @@ using Mapbox.Unity.Location;
 using Mapbox.Unity.Map;
 using Mapbox.CheapRulerCs;
 using Mapbox.Utils;
+using UnityARInterface;
 
 public class PlaceMapboxMap : MonoBehaviour
 {
     private bool MapPlaced;
     //for editor version
-
+    
+    public GameObject focusSquare;
+    
     public float maxRayDistance = 30.0f;
     public LayerMask collisionLayerMask;
     public float findingSquareDist = 0.5f;
@@ -92,25 +95,14 @@ public class PlaceMapboxMap : MonoBehaviour
         //effectively similar to calling HitTest with ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent
         if (Physics.Raycast(ray, out hit, maxRayDistance, collisionLayerMask))
         {
-            //CentreMeX = _currentLocation.LatitudeLongitude.x.ToString();
-            //CentreMeY = _currentLocation.LatitudeLongitude.y.ToString();
-            
-
-            
             _mapTransform.gameObject.SetActive(true);
-            
             _mapTransform.position = hit.point;
-
-            // Used to move around map - resets zoom to #
-            //_map.UpdateMap(_map.CenterLatitudeLongitude, 12);
             MapPlaced = true;
 
-            //_mapManager.Options.locationOptions.latitudeLongitude = CentreMeXY;
-            //var location = LocationProviderFactory.Instance.DefaultLocationProvider.CurrentLocation;
-            //_map.SetCenterLatitudeLongitude(Player.transform.position);
-
-            //Vector3
-            //SetPlacementType(MapPlacementType.AtLocationCenter);
+            // Turn off Focus Square!!
+            focusSquare.SetActive(false);
+            
+            
 
 
         }
