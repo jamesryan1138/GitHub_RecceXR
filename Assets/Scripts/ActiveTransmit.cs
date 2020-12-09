@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class ActiveTransmit : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class ActiveTransmit : MonoBehaviour
         displayMyName.text = gameControllers.userInfo.GetName();
         displayMyGroup.text = gameControllers.userInfo.GetGroupID();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -39,8 +41,6 @@ public class ActiveTransmit : MonoBehaviour
         DisplayGrid.text = Coordinates;
 
     }
-
-
 
     private IEnumerator GetLocation()
     {

@@ -17,7 +17,13 @@ public class UserInfo : MonoBehaviour
     public List<InputField> Input = new List<InputField>();
     public InputField GroupIDInput;
     public InputField NameInput;
+    public int FieldLength = 10;
+
+    public GameObject arMapButton;
+    public GameObject transmitButton;
     
+    private string UserID;
+    private string GroupID;
 
     // Scene & Group Functions
     
@@ -25,22 +31,20 @@ public class UserInfo : MonoBehaviour
     
     public string GetName()
     {
-        return NameInput.text;
+        
+        return UserID;
     }
 
     public string GetGroupID()
     {
-        return GroupIDInput.text;
+        return GroupID;
     }
         
     public void SubmitInfo()
     {
-        foreach (InputField Info in Input)
-
-        {
-            Info.text = "";
-        }
-
+        UserID = NameInput.text;
+        GroupID = GroupIDInput.text;
+        
         Debug.Log("Name: " + NameInput.text + " // " + "GroupID: " + GroupIDInput.text);
 
         DontDestroyOnLoad(this.gameObject);
@@ -79,8 +83,26 @@ public class UserInfo : MonoBehaviour
             PlayerPrefs.SetInt("MyAvatar", MySelectedAvatar);
 
         }
+
+        NameInput.characterLimit = FieldLength;
+        GroupIDInput.characterLimit = FieldLength;
+        CheckInputs();
+        
     }
 
+    private void CheckInputs()
+    {
+        if( string.IsNullOrEmpty( NameInput.text ))
+        {
+            arMapButton.SetActive( false );
+            transmitButton.SetActive(false);
+        }
+        else
+            arMapButton.SetActive( true );
+        transmitButton.SetActive(true);
+    }
+    
+    
     public void SetSelectedAvatar(int selectedAvatar)
     {
         MySelectedAvatar = selectedAvatar;

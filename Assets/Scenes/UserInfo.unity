@@ -2363,7 +2363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1121777304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2725,8 +2725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userInfo: {fileID: 2143389866}
-  m_name: 
-  m_group: 
 --- !u!4 &1292890583
 Transform:
   m_ObjectHideFlags: 0
@@ -4133,7 +4131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1758070669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5090,7 +5088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d512c92b1619f4c58adcbc416c7e758a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MySelectedCharacter: 0
+  MySelectedAvatar: 0
   allCharacters:
   - {fileID: 8606791716328686993, guid: 53c12825581cb451cb39cabd5b67dade, type: 3}
   - {fileID: 8606791716328686993, guid: 8d458f8e4fc57477cb3fd65bdfc54cae, type: 3}
@@ -5098,6 +5096,9 @@ MonoBehaviour:
   Input: []
   GroupIDInput: {fileID: 1652066883}
   NameInput: {fileID: 925538852}
+  FieldLength: 10
+  arMapButton: {fileID: 1121777303}
+  transmitButton: {fileID: 1758070668}
 --- !u!4 &2143389867
 Transform:
   m_ObjectHideFlags: 0

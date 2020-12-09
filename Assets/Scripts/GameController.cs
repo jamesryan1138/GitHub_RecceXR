@@ -8,9 +8,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController gameController;
     public UserInfo userInfo;
-    public string m_name;
-    public string m_group;
-
+    
 
     // Awake used for initializations before start is called SINGLETON.
     void Awake()
@@ -24,19 +22,6 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void GrabInfo()
-    {
-        m_name = userInfo.GetName();
-        m_group = userInfo.GetGroupID();
-        
     }
 
 }

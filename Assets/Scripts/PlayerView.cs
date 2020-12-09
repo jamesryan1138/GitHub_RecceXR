@@ -38,36 +38,29 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
     
     public void Awake()
     {
-        if (this.photonView.IsMine)
-        {
-            GameController gameControllers = GameObject.FindObjectOfType <GameController>();
-            UserID = gameControllers.userInfo.GetName();
-            
-            //TODO Call SetUp RPC with UserID ... Add debugs and hook up with Beacon.
-        }
+        DontDestroyOnLoad(gameObject);
+        
     }
     
     //Create RPC function [PunRPC] - Data type has to be serialized
     [PunRPC]
-    void RPC_AddCharacter(int whichBeaconAvatar, string userID)
+    void RPC_SetAvatar(int whichBeaconAvatar, string userID)
     {
         //Instantiates the non-local players selected character/beacon to local player client
         BeaconAvatar = whichBeaconAvatar;
         UserID = userID;
         Debug.Log("Character PICKED!!");
-        
+        BeaconSpawner.Instance.RegisterPlayerView(this);
     }
     
     //
     public void Start()
     {
-        BeaconSpawner.Instance.RegisterPlayerView(this);
-        
         //Checks if PV is local client - if not, function does not run
         if (photonView.IsMine)
         {
             //Calls RPC function by Name("RPC_AddCharacter"), sent to who across network ("AllBuffered"), values sent as parameters 
-            photonView.RPC("RPC_AddCharacter",
+            photonView.RPC(nameof(RPC_SetAvatar),
                 RpcTarget.AllBuffered, 
                 UserInfo.instance.MySelectedAvatar, 
                 UserInfo.instance.GetName());

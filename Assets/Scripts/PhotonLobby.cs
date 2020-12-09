@@ -35,14 +35,12 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         base.OnEnable();
         PhotonNetwork.AddCallbackTarget(this);
-        SceneManager.sceneLoaded += OnSceneFinishedLoading;
     }
 
     public override void OnDisable()
     {
         base.OnDisable();
         PhotonNetwork.RemoveCallbackTarget(this);
-        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
     }
 
 
@@ -114,25 +112,13 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.CurrentRoom);
-
+        CreatePlayer();
         PhotonNetwork.LoadLevel(SceneName);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("Tried to create a room but failed, there must already be a room with the same name");
-    }
-
-private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log(scene.name);
-
-        if (scene.name == "TabletopAR" || scene.name == "ActiveUserScene")
-        {
-            CreatePlayer();
-            Debug.Log("Create a Player playa!");
-
-        }
     }
 
     private void CreatePlayer()
