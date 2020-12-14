@@ -19,9 +19,9 @@ public class MapZoomAR : MonoBehaviour
         Debug.Log("Decrease Zoom");
     }
 
-    public virtual void UpdateMap(float zoom)
+    public void UpdateMap()
     {
-        _mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
+        //
     }
     public void SetZoom(float NewZoom)
     {
@@ -30,6 +30,5 @@ public class MapZoomAR : MonoBehaviour
         _mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
       
     }
-    
-    
+
 }

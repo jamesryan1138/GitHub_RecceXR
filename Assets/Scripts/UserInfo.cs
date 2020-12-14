@@ -84,22 +84,27 @@ public class UserInfo : MonoBehaviour
 
         }
 
-        NameInput.characterLimit = FieldLength;
-        GroupIDInput.characterLimit = FieldLength;
+        //NameInput.characterLimit = FieldLength;
+        //GroupIDInput.characterLimit = FieldLength;
         CheckInputs();
+        NameInput.onValueChanged.AddListener(str => CheckInputs());
+        GroupIDInput.onValueChanged.AddListener(str => CheckInputs());
         
     }
 
     private void CheckInputs()
     {
-        if( string.IsNullOrEmpty( NameInput.text ))
+        if (string.IsNullOrEmpty(NameInput.text) || string.IsNullOrEmpty(GroupIDInput.text))
         {
-            arMapButton.SetActive( false );
+            arMapButton.SetActive(false);
             transmitButton.SetActive(false);
         }
         else
+        {
             arMapButton.SetActive( true );
-        transmitButton.SetActive(true);
+            transmitButton.SetActive(true);
+        }
+            
     }
     
     

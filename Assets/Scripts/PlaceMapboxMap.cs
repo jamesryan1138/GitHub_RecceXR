@@ -19,19 +19,7 @@ public class PlaceMapboxMap : MonoBehaviour
     public float findingSquareDist = 0.5f;
     public Transform _mapTransform;
     public AbstractMap _map;
-
-
-
-    //public string CentreMeX;
-    //public string CentreMeY;
-    //public  Vector2d CentreMeXY;
-
-    ///  
-    ///
-
-    /// </summary>
-    /// <value>The current location.</value>
-    ///
+    public GameObject MapBase;
 
     protected Location _currentLocation;
     public Location CurrentLocation
@@ -57,12 +45,7 @@ public class PlaceMapboxMap : MonoBehaviour
             return _locationProvider;
         }
     }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -80,7 +63,8 @@ public class PlaceMapboxMap : MonoBehaviour
         }
         
     }
-
+    
+    
     void InstantiateMap()
     {
         Debug.Log("Instantiate Map");
@@ -95,17 +79,53 @@ public class PlaceMapboxMap : MonoBehaviour
         //effectively similar to calling HitTest with ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent
         if (Physics.Raycast(ray, out hit, maxRayDistance, collisionLayerMask))
         {
+            var position = hit.point;
+            
+            position.y += 0.2f;
             _mapTransform.gameObject.SetActive(true);
-            _mapTransform.position = hit.point;
+            _mapTransform.position = position;
             MapPlaced = true;
 
             // Turn off Focus Square!!
             focusSquare.SetActive(false);
+            // Turn on Map Base!!
+            MapBase.SetActive(true);
+        
             
+            var direction = ray.direction;
+            direction.y = 0;
+            _mapTransform.rotation = Quaternion.LookRotation(direction);
+            Vector3 rotation = _mapTransform.rotation.eulerAngles;
+            float missing = rotation.y % 45;
+            rotation.y += missing > 23 ? 45 - missing : - missing;
+            _mapTransform.rotation = Quaternion.Euler(rotation); 
             
-
+            // Change Vector3 values to adjust map size
+            UpdateShaderValues(_mapTransform.position, new Vector3(2, 2, 2), _mapTransform.rotation);
 
         }
 
     }
+    
+    void UpdateShaderValues(Vector3 position, Vector3 localScale, Quaternion rotation)
+    {
+
+        Shader.SetGlobalVector("_Origin", new Vector4(
+            position.x,
+            position.y,
+            position.z,
+            0f));
+        Shader.SetGlobalVector("_BoxRotation", new Vector4(
+            rotation.eulerAngles.x,
+            rotation.eulerAngles.y,
+            rotation.eulerAngles.z,
+            0f));
+
+        Shader.SetGlobalVector("_BoxSize", new Vector4(
+            localScale.x,
+            localScale.y,
+            localScale.z,
+            0f));
+    }
+    
 }

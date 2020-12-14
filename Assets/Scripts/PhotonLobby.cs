@@ -68,8 +68,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         
         Debug.Log("Player has connected to master server");
         
-        SaveButton.SetActive(true); // Player is now connected to servers, JoinMapButton to start shit up!
-        StayActiveButton.SetActive(true);
+        //SaveButton.SetActive(true); // Player is now connected to servers, JoinMapButton to start shit up!
+        //StayActiveButton.SetActive(true);
      
         ConnectedText.SetActive(true);
         DisconnectedText.SetActive(false);

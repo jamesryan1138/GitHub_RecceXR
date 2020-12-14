@@ -413,7 +413,6 @@ GameObject:
   - component: {fileID: 4731382682978453764}
   - component: {fileID: 4624275182669733692}
   - component: {fileID: 4624874782536372414}
-  - component: {fileID: 4621106998820555730}
   m_Layer: 0
   m_Name: ARTabletopKit
   m_TagString: Untagged
@@ -460,18 +459,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 642295543cf604e8db40851de83fa292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4621106998820555730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737606672647630010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5698001a6edd244c898af1c8f86a48ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4737619283889512326
