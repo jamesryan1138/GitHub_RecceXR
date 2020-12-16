@@ -14,7 +14,9 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
     public Vector2d LatitudeLongitude;
     public string UserID;
     public int BeaconAvatar;
-
+    Vector3 position;
+    Quaternion rotation;
+    float smoothing = 500f;
 
     
 
@@ -67,6 +69,36 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
             Debug.Log("Character checker?");
         }
         
+        // LERP Smoothing Test
+        //
+        //
+        else
+        {
+            StartCoroutine("UpdateData");
+        }
+        
+    }
+    
+    // LERP Smoothing Test
+    //
+    //
+    /*
+    public void Update()
+    {
+        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime *  smoothing);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime *  smoothing);
+    }
+
+    */
+    IEnumerator UpdateData()
+    {
+        while (true)
+        {
+            transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime *  smoothing);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime *  smoothing);
+
+            yield return null;
+        }
     }
 
     public void OnDestroy()
@@ -94,12 +126,21 @@ public class PlayerView : MonoBehaviourPun, IPunObservable
 
             stream.SendNext(LatitudeLongitude.x);
             stream.SendNext(LatitudeLongitude.y);
+            
+            // LERP Stuff
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
         }
         
         else
         {
             double x = (double)stream.ReceiveNext();
             double y = (double)stream.ReceiveNext();
+            
+            //LERP Stuff print ("Receiving");
+            position = (Vector3)stream.ReceiveNext();
+            rotation = (Quaternion)stream.ReceiveNext();
+            
             this.LatitudeLongitude = new Vector2d(x,y);
             Debug.LogWarning("Serialized View Called");
 

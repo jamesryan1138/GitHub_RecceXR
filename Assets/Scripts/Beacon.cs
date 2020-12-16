@@ -32,7 +32,7 @@ namespace DefaultNamespace
         
         void LateUpdate()
         {
-            if (_isInitialized)
+            if (_isInitialized && playerView != null)
             {
                 transform.localPosition = _abstractMap.GeoToWorldPosition(playerView.LatitudeLongitude);
             }
